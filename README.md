@@ -41,7 +41,7 @@ There are three ways to install this skill depending on where you use Claude.
 
 This is the most common path. Once installed via the web app, the skill works on the **mobile app** too (since it's tied to your account).
 
-1. Download the latest `namecard-capture.skill` file from the [Releases](../../releases) page (or the `dist/` folder of this repo)
+1. Download the latest `namecard-capture.skill` file from the [Releases](../../releases) page (or the `dist/` folder of this repo). **Do not** use GitHub's green "Code → Download ZIP" button — that gives you the repo source, not a valid skill package, and Claude will reject it with "SKILL.md must be in the top-level folder."
 2. Go to [claude.ai](https://claude.ai) and sign in
 3. Click your profile icon (top right) → **Settings**
 4. Under **Capabilities**, make sure **Code execution and file creation** is toggled **on** (skills won't work without this)
@@ -135,14 +135,16 @@ Fork this repo and edit `namecard-capture/SKILL.md` to adapt it to your workflow
 - **Adjust the columns** — modify Step 3 to capture different fields
 - **Change the session timeout** — currently 6 hours; edit the "session" definition in Step 1
 
-After editing, repackage the skill:
+After editing, repackage the skill so that `SKILL.md` sits at the **root** of the archive (Claude rejects nested skill files):
 
 ```bash
-# From the skill-creator scripts
-python -m scripts.package_skill ./namecard-capture
+cd namecard-capture
+zip ../namecard-capture.skill SKILL.md
 ```
 
-Or just zip the `namecard-capture/` folder (with `SKILL.md` at the root) and rename to `.skill`.
+Then upload `namecard-capture.skill` to Claude.
+
+> ⚠️ Don't use GitHub's "Download ZIP" button to install the skill — that gives you the repo source, not a valid skill package. Use the file in `dist/` (or the [Releases](../../releases) page) instead.
 
 ---
 
