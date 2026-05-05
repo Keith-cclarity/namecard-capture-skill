@@ -41,7 +41,9 @@ There are three ways to install this skill depending on where you use Claude.
 
 This is the most common path. Once installed via the web app, the skill works on the **mobile app** too (since it's tied to your account).
 
-1. Download the latest `namecard-capture.skill` file from the [Releases](../../releases) page (or the `dist/` folder of this repo). **Do not** use GitHub's green "Code → Download ZIP" button — that gives you the repo source, not a valid skill package, and Claude will reject it with "SKILL.md must be in the top-level folder."
+1. Download the skill file: **[namecard-capture.skill](https://github.com/Keith-cclarity/namecard-capture-skill/releases/latest/download/namecard-capture.skill)** (always points to the latest release).
+   - Alternative sources: the [Releases](../../releases) page, or the [`dist/namecard-capture.skill`](https://github.com/Keith-cclarity/namecard-capture-skill/raw/main/dist/namecard-capture.skill) file in this repo.
+   - **Do not** use GitHub's green "Code → Download ZIP" button — that gives you the repo source, not a valid skill package, and Claude will reject it with "SKILL.md must be in the top-level folder."
 2. Go to [claude.ai](https://claude.ai) and sign in
 3. Click your profile icon (top right) → **Settings**
 4. Under **Capabilities**, make sure **Code execution and file creation** is toggled **on** (skills won't work without this)
