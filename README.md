@@ -2,7 +2,7 @@
 
 A Claude Skill that turns photos of business cards into structured contact records and follow-up emails — without breaking your flow at an event.
 
-Snap a photo of someone's name card at a conference. Claude extracts the contact details, logs them to your **Notion** database (or labels them in **Gmail** if you don't use Notion), and drafts (or sends) a personalised follow-up email referencing the event you met at.
+Snap a photo of someone's name card at a conference. Claude extracts the contact details, logs them to your **Notion** database (or labels them in **Gmail** if you don't use Notion), and drafts a personalised follow-up email referencing the event you met at.
 
 Built for founders, salespeople, and anyone who collects more cards at events than they ever follow up with.
 
@@ -12,13 +12,15 @@ Built for founders, salespeople, and anyone who collects more cards at events th
 
 When you upload a photo of a business card, the skill will:
 
-1. **Ask once per session**: which event you're at, where to save contacts (Notion or Gmail labels), and whether to draft or send follow-up emails
+1. **Ask once per session**: which event you're at, and where to save contacts (Notion or Gmail labels)
 2. **Extract** name, title, company, email, phone, website, LinkedIn, and notes from the card
 3. **Save the contact** — either as a new row in your `Networking Contacts` Notion database (auto-created the first time), or by labelling each follow-up draft in Gmail under `Namecards/[Event Name]`
-4. **Draft or send** a short, casual follow-up email with your LinkedIn URL
+4. **Draft a follow-up email** — short, casual, with your LinkedIn URL. The draft sits in your Gmail Drafts for you to review and send.
 5. **Confirm** with a one-line summary per card
 
-For multiple cards in the same session, the event, storage choice, and email-handling preference are reused silently — no repeated questions until you start a new session or pause for more than 6 hours.
+For multiple cards in the same session, the event and storage choice are reused silently — no repeated questions until you start a new session or pause for more than 6 hours.
+
+> **Why drafts only?** The Claude.ai Gmail connector creates drafts but cannot send email directly. You always get to review before sending, which is what you want at an event anyway.
 
 > **Why two storage options?** Claude.ai's Google Drive connector can only *create* files, not append rows to existing Sheets/Docs. Notion has full read/write support so it's the recommended path. Gmail labels are the fallback for users who don't use Notion — your follow-up drafts become a searchable record by event.
 
@@ -114,20 +116,19 @@ After install, open a chat in Claude (web, desktop, or mobile) and upload a phot
 
 > You: *(uploads photo of business card)*
 >
-> Claude: Before I log this card, three quick questions:
+> Claude: Before I log this card, two quick questions:
 > 1. Which event/conference did you meet them at?
 > 2. Where should I save the contacts — Notion database or Gmail labels?
-> 3. Should follow-up emails be saved as drafts or sent directly?
 
 After you answer, Claude processes the card and confirms:
 
 > ✅ Jane Smith from Acme Corp
-> • Logged to Notion: Networking Contacts → TechCon 2026
+> • Logged to Notion: Networking Contacts (Event: TechCon 2026)
 > • Draft email created in Gmail
 
 **Subsequent cards in the same session:** No repeated questions — Claude just processes and confirms.
 
-**New session (new chat or after 6+ hours):** All three questions are re-asked.
+**New session (new chat or after 6+ hours):** Both questions are re-asked.
 
 ### Notion database (recommended)
 
@@ -149,7 +150,7 @@ If you don't use Notion, the skill creates the labels `Namecards` and `Namecards
 
 If the skill doesn't auto-trigger, you can force it:
 
-> "Use the namecard-capture skill — I'm at SaaStr 2026, log to Notion, save follow-ups as drafts."
+> "Use the namecard-capture skill — I'm at SaaStr 2026, log to Notion."
 
 ---
 
