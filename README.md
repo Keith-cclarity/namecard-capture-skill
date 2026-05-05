@@ -12,13 +12,16 @@ Built for founders, salespeople, and anyone who collects more cards at events th
 
 When you upload a photo of a business card, the skill will:
 
-1. **Ask once per session**: which event you're at, and where to save contacts (Notion or Gmail labels)
-2. **Extract** name, title, company, email, phone, website, LinkedIn, and notes from the card
-3. **Save the contact** — either as a new row in your `Networking Contacts` Notion database (auto-created the first time), or by labelling each follow-up draft in Gmail under `Namecards/[Event Name]`
-4. **Draft a follow-up email** — short, casual, with your LinkedIn URL. The draft sits in your Gmail Drafts for you to review and send.
-5. **Confirm** with a one-line summary per card
+1. **Figure out the event silently** — from your message ("just met John at SaaStr 2026") or earlier in the chat. Only asks if it can't infer.
+2. **Auto-pick storage** — Notion if you have the connector enabled, otherwise Gmail labels. No question asked.
+3. **Extract** name, title, company, email, phone, website, LinkedIn, and notes from the card
+4. **Save the contact** — either as a new row in your `Networking Contacts` Notion database (auto-created the first time), or by labelling each follow-up draft in Gmail under `Namecards/[Event Name]`
+5. **Draft a follow-up email** — short, casual, with your LinkedIn URL. The draft sits in your Gmail Drafts.
+6. **Confirm** with a one-line summary per card
 
-For multiple cards in the same session, the event and storage choice are reused silently — no repeated questions until you start a new session or pause for more than 6 hours.
+After the first card, every subsequent card is **zero questions** — upload, confirm, done.
+
+> ⏰ **At the end of the event**, open Gmail → **Drafts** → batch-send all the follow-ups in 2 minutes. Drafts (not auto-send) means you get to review before sending — usually a feature, not a bug.
 
 > **Why drafts only?** The Claude.ai Gmail connector creates drafts but cannot send email directly. You always get to review before sending, which is what you want at an event anyway.
 
@@ -112,23 +115,31 @@ The skill itself is a portable instruction file — it doesn't depend on claude.
 
 After install, open a chat in Claude (web, desktop, or mobile) and upload a photo of a business card. The skill triggers automatically.
 
-**First card of a session:**
+**Best flow — mention the event in your message:**
 
-> You: *(uploads photo of business card)*
+> You: *(uploads photo)* "Just met Jane at TechCon 2026"
 >
-> Claude: Before I log this card, two quick questions:
-> 1. Which event/conference did you meet them at?
-> 2. Where should I save the contacts — Notion database or Gmail labels?
-
-After you answer, Claude processes the card and confirms:
-
-> ✅ Jane Smith from Acme Corp
+> Claude: ✅ Jane Smith from Acme Corp
 > • Logged to Notion: Networking Contacts (Event: TechCon 2026)
 > • Draft email created in Gmail
 
-**Subsequent cards in the same session:** No repeated questions — Claude just processes and confirms.
+Zero questions. Skill picks up the event from your message and storage from your enabled connectors.
 
-**New session (new chat or after 6+ hours):** Both questions are re-asked.
+**If you don't mention the event:**
+
+> You: *(uploads photo)*
+>
+> Claude: Quick one — which event are you at?
+>
+> You: SaaStr 2026
+>
+> Claude: ✅ Jane Smith from Acme Corp
+> • Logged to Notion: Networking Contacts (Event: SaaStr 2026)
+> • Draft email created in Gmail
+
+**Subsequent cards in the same session:** Zero questions. Skill reuses the event and storage from card one.
+
+**New session (new chat or after 6+ hours):** The event is re-asked (or re-detected if you mention it).
 
 ### Notion database (recommended)
 

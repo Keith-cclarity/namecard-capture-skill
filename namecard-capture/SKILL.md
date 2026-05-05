@@ -23,29 +23,33 @@ The Google Drive connector is create-only (no append/update), which is why this 
 
 ## Workflow
 
-### Step 1: Establish session context (once per session)
+### Step 1: Establish session context (silently when possible)
 
-Before processing any cards, check whether session context has already been established **in the current session**. There are two things to establish:
+The user is capturing cards at a live event. Minimise questions. Two things need to be settled for the session, but most of the time you can infer them without asking.
 
-**A. Event context**
-- **If no event context yet**: Ask which event/conference this is, and the date if not today.
-- **If already established**: Reuse silently. Do NOT re-ask.
+**A. Event context — try to infer first**
 
-**B. Storage choice**
-- **If no storage choice set yet**: Ask:
-  > "Where should I save these contacts?
-  > 1. **Notion database** (recommended — structured, searchable). I'll find or create one called 'Networking Contacts' in your workspace.
-  > 2. **Gmail labels** (lightweight). I'll tag each follow-up draft with the event name so you can find them in Gmail later."
-- **If already established**: Reuse silently.
+Before asking, look for the event name in any of these sources, in order:
+1. **The user's message accompanying the photo.** Phrases like "just met X at SaaStr 2026", "from TechCon", "at AWS re:Invent today", or any conference / event / meetup name should be treated as the event. Extract it.
+2. **Earlier in the chat conversation.** If the user mentioned an event in a previous message ("I'm at SaaStr today"), reuse it.
+3. **Only if neither of the above yields an event**, ask once:
+   > "Quick one — which event are you at?"
 
-You can ask both together in the first message:
-> "Before I log this card, two quick questions:
-> 1. Which event/conference did you meet them at?
-> 2. Where should I save the contacts — Notion database or Gmail labels?"
+Assume the date is today unless the user says otherwise. Do not ask for the date separately.
 
-**Define "session"**: Treat the current chat conversation as one session. If a new chat is started, or if the most recent name-card message was more than 6 hours ago, treat it as a new session and re-ask both questions.
+**B. Storage choice — auto-pick, do not ask**
 
-Store the event name, date, and storage choice for use throughout the session. Also remember any IDs you've resolved (the Notion data source ID, the Gmail label IDs) so you don't re-resolve them per card.
+Pick storage based on what's available. Do **not** ask the user.
+
+- **If the Notion connector / tools are available** in this runtime: use **Notion mode**. Default to a database called "Networking Contacts".
+- **If Notion is unavailable but Gmail is**: use **Gmail labels mode**.
+- **If both are unavailable**: tell the user the skill needs at least Gmail enabled and stop.
+
+If the user has explicitly stated a preference earlier in the session ("save to Notion" / "just use Gmail labels"), respect that.
+
+**Define "session"**: Treat the current chat conversation as one session. If a new chat is started, or if the most recent name-card message was more than 6 hours ago, treat it as a new session and re-resolve event + storage.
+
+Cache for the session: event name, date, storage mode, and any resolved IDs (Notion data source ID, Gmail label IDs). Don't re-resolve them per card.
 
 ### Step 2: Extract name card information
 
