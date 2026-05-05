@@ -33,9 +33,23 @@ Both connectors are available out of the box on claude.ai.
 
 ---
 
-## Installation
+## Quick install (60 seconds)
 
-There are three ways to install this skill depending on where you use Claude.
+If you just want it working on [claude.ai](https://claude.ai), do this:
+
+1. **Download the skill file:** [namecard-capture.skill](https://github.com/Keith-cclarity/namecard-capture-skill/releases/latest/download/namecard-capture.skill)
+2. **Go to [claude.ai](https://claude.ai)** → click your profile (top right) → **Settings** → **Capabilities** → turn on **Code execution and file creation** → then go to **Skills** → **+ Upload skill** → pick the file you just downloaded → toggle it **on**
+3. **Connect Google Drive and Gmail:** Settings → **Connectors** → enable both
+
+That's it. Open any chat, upload a photo of a business card, and the skill triggers automatically.
+
+> 💡 If your browser rejects the `.skill` file, rename it to `.zip` (same format) and try again. **Don't** use the green "Code → Download ZIP" button on this repo — that's the source code, not the skill.
+
+---
+
+## Installation (detailed)
+
+Three install paths, depending on where you use Claude. Most people only need Option A.
 
 ### Option A — Claude.ai (web or desktop)
 
