@@ -33,7 +33,7 @@ After the first card, every subsequent card is **zero questions** — upload, co
 
 - A Claude account (Free, Pro, Max, Team, or Enterprise) — see [claude.ai](https://claude.ai)
 - **Code execution and file creation** enabled in Claude settings
-- **Gmail** connector enabled (for email drafts / sending — required either way)
+- **Gmail** connector enabled (for the follow-up email drafts — required either way)
 - **Notion** connector enabled (recommended, for structured storage) — _or_ skip Notion and use Gmail labels only
 
 All connectors are available out of the box on claude.ai.

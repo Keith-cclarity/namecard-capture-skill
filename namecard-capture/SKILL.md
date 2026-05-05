@@ -33,7 +33,7 @@ Before asking, look for the event name in any of these sources, in order:
 1. **The user's message accompanying the photo.** Phrases like "just met X at SaaStr 2026", "from TechCon", "at AWS re:Invent today", or any conference / event / meetup name should be treated as the event. Extract it.
 2. **Earlier in the chat conversation.** If the user mentioned an event in a previous message ("I'm at SaaStr today"), reuse it.
 3. **Only if neither of the above yields an event**, ask once:
-   > "Quick one — which event are you at?"
+   > "Quick one. Which event are you at?"
 
 Assume the date is today unless the user says otherwise. Do not ask for the date separately.
 
@@ -128,7 +128,7 @@ Always create a draft (the connector cannot send directly). The user reviews and
 ```
 Hi [First Name],
 
-Great meeting you at [Event Name]! Really enjoyed our chat — would love to stay in touch.
+Great meeting you at [Event Name]. Really enjoyed our chat and would love to stay in touch.
 
 Feel free to connect with me on LinkedIn: https://www.linkedin.com/in/keithteo36
 
@@ -137,6 +137,12 @@ Keith
 ```
 
 Vary phrasing slightly per card so the drafts don't read identically. Keep length, tone, and key elements (event reference + LinkedIn URL + casual sign-off as Keith).
+
+**Voice rules for the email** (Keith's voice):
+- Never use em dashes. Use commas, periods, or restructure the sentence.
+- Plain conversational language. Not a copywriter voice.
+- British spellings (organise, behaviour, optimise).
+- Do not use "engaging" or marketing-speak. Write like you're texting a friendly acquaintance.
 
 Call `create_draft` with the parameters above.
 
