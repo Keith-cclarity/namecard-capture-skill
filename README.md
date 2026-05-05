@@ -12,7 +12,7 @@ Built for founders, salespeople, and anyone who collects more cards at events th
 
 When you upload a photo of a business card, the skill will:
 
-1. **Ask once per session** which event you're at and whether to draft or send follow-up emails directly
+1. **Ask once per session**: which event you're at, and whether to save follow-up emails as drafts or send them directly
 2. **Extract** name, title, company, email, phone, website, LinkedIn, and notes from the card
 3. **Append** a row to a Google Sheet in your Drive (existing sheet or a new one named `Networking - [Event] - [Date]`)
 4. **Draft or send** a short, casual follow-up email with your LinkedIn URL
@@ -59,7 +59,7 @@ For developers who want the skill available in the terminal.
 
 ```bash
 # Clone the repo
-git clone https://github.com/keithteo36/namecard-capture-skill.git
+git clone https://github.com/Keith-cclarity/namecard-capture-skill.git
 cd namecard-capture-skill
 
 # Copy the skill folder to your Claude Code skills directory
@@ -197,6 +197,6 @@ MIT — see [LICENSE](LICENSE).
 **Keith Teo** — Founder of [Cclarity](https://cclarity.io)
 
 - LinkedIn: [linkedin.com/in/keithteo36](https://www.linkedin.com/in/keithteo36)
-- GitHub: [@keithteo36](https://github.com/keithteo36)
+- GitHub: [@Keith-cclarity](https://github.com/Keith-cclarity)
 
 If this saves you time at your next conference, a star on the repo is appreciated. If you build something cool on top of it, tag me on LinkedIn — always keen to see how people remix these.
